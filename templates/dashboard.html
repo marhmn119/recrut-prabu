@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Rekrutmen Prabu Jakarta 2026</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f4f7f6;}
+        h2 { color: #333; text-align: center; margin-bottom: 20px; }
+        .table-container { overflow-x: auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; white-space: nowrap; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #0056b3; color: white; }
+        a { color: #0056b3; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+        .badge { background-color: #e9ecef; padding: 5px 10px; border-radius: 5px; font-size: 14px; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h2>Data Pendaftar Prabu Jakarta 2026</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Lengkap</th>
+                    <th>Kelas</th>
+                    <th>Alasan</th>
+                    <th>File CV</th>
+                    <th>File Transkrip</th>
+                    <th>File SWOT</th>
+                    <th>File Ijazah SMP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in pendaftar %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td><strong>{{ row.nama }}</strong></td>
+                    <td><span class="badge">{{ row.kelas }}</span></td>
+                    <td style="white-space: normal; min-width: 200px;">{{ row.alasan }}</td>
+                    <td>
+                        {% if row.cv_url %}
+                            <a href="{{ row.cv_url }}" target="_blank">Lihat CV</a>
+                        {% else %} - {% endif %}
+                    </td>
+                    <td>
+                        {% if row.transkrip_url %}
+                            <a href="{{ row.transkrip_url }}" target="_blank">Lihat Transkrip</a>
+                        {% else %} - {% endif %}
+                    </td>
+                    <td>
+                        {% if row.swot_url %}
+                            <a href="{{ row.swot_url }}" target="_blank">Lihat SWOT</a>
+                        {% else %} - {% endif %}
+                    </td>
+                    <td>
+                        {% if row.ijazah_url %}
+                            <a href="{{ row.ijazah_url }}" target="_blank">Lihat Ijazah</a>
+                        {% else %} - {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8" style="text-align: center; color: #777;">Belum ada pendaftar yang masuk.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
