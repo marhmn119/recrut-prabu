@@ -70,7 +70,7 @@ def submit():
         db.session.add(pendaftar_baru)
         db.session.commit()
 
-        return f"Pendaftaran atas nama {nama} berhasil! File dan data telah diamankan di sistem Prabu Jakarta 2026."
+      return render_template('success.html', nama=nama_input)
 
 @app.route('/dashboard')
 def dashboard():
