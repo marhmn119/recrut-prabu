@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekrutmen Anggota Prabu Jakarta 2026</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            overflow: hidden;
+        }
+        .header-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 4px solid #f39c12;
+        }
+        .form-content {
+            padding: 30px 40px;
+        }
+        h2 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 5px;
+            font-weight: 800;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        input[type="text"],
+        select,
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd1d9;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .file-hint {
+            font-size: 12px;
+            color: #888;
+            margin-top: 6px;
+            display: block;
+            font-style: italic;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <!-- GAMBAR HEADER: Mengambil file dari folder static -->
+        <img src="{{ url_for('static', filename='foto prabu.png') }}" alt="Prabu Jakarta" class="header-image">
+        
+        <div class="form-content">
+            <h2>Pendaftaran Anggota</h2>
+            <p class="subtitle">Prabu Jakarta Tahun 2026</p>
+            
+            <form action="/submit" method="POST" enctype="multipart/form-data">
+                
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" name="namaLengkap" placeholder="Masukkan nama lengkap Anda" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kelas">Kelas</label>
+                    <select id="kelas" name="kelas" required>
+                        <option value="" disabled selected>-- Pilih Kelas --</option>
+                        <option value="X-1">X-1</option>
+                        <option value="X-2">X-2</option>
+                        <option value="X-3">X-3</option>
+                        <option value="X-4">X-4</option>
+                        <option value="X-5">X-5</option>
+                        <option value="X-6">X-6</option>
+                        <option value="X-7">X-7</option>
+                        <option value="X-8">X-8</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="alasan">Alasan Masuk Prabu</label>
+                    <textarea id="alasan" name="alasan" rows="4" placeholder="Jelaskan alasan Anda ingin bergabung..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="cv">Upload CV</label>
+                    <input type="file" id="cv" name="cv" accept=".pdf, .jpg, .png" required>
+                    <span class="file-hint">Format yang diizinkan: PDF, JPG, PNG.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="transkrip">Upload Transkrip Nilai</label>
+                    <input type="file" id="transkrip" name="transkrip" accept=".pdf, .jpg, .png" required>
+                    <span class="file-hint">Format yang diizinkan: PDF, JPG, PNG.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="swot">Upload Analisis SWOT</label>
+                    <input type="file" id="swot" name="swot" accept=".pdf, .doc, .docx" required>
+                    <span class="file-hint">Format yang diizinkan: PDF, DOC, DOCX.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="ijazah">Upload Ijazah SMP</label>
+                    <input type="file" id="ijazah" name="ijazah" accept=".pdf, .jpg, .png" required>
+                    <span class="file-hint">Format yang diizinkan: PDF, JPG, PNG.</span>
+                </div>
+
+                <button type="submit">Kirim Pendaftaran</button>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

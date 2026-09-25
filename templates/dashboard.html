@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pendaftar Prabu Jakarta 2026</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f7f6;
+            padding: 30px; 
+            margin: 0;
+        }
+        h2 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 30px;
+        }
+        .table-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        th, td { 
+            border: 1px solid #e1e8ed; 
+            padding: 12px 15px; 
+            text-align: left; 
+            font-size: 14px;
+        }
+        th { 
+            background-color: #1e3c72; 
+            color: white; 
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        a { 
+            color: #0056b3; 
+            text-decoration: none; 
+            font-weight: 600;
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        .empty-row {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2>Data Pendaftar Prabu Jakarta 2026</h2>
+    
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Lengkap</th>
+                    <th>Kelas</th>
+                    <th>Alasan</th>
+                    <th>File CV</th>
+                    <th>File Transkrip</th>
+                    <th>File SWOT</th>
+                    <th>File Ijazah SMP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in pendaftar %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td><strong>{{ row.nama }}</strong></td>
+                    <td>{{ row.kelas }}</td>
+                    <td>{{ row.alasan }}</td>
+                    <td><a href="{{ url_for('uploaded_file', filename=row.cv) }}" target="_blank">Lihat CV</a></td>
+                    <td><a href="{{ url_for('uploaded_file', filename=row.transkrip) }}" target="_blank">Lihat Transkrip</a></td>
+                    <td><a href="{{ url_for('uploaded_file', filename=row.swot) }}" target="_blank">Lihat SWOT</a></td>
+                    <td><a href="{{ url_for('uploaded_file', filename=row.ijazah) }}" target="_blank">Lihat Ijazah</a></td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8" class="empty-row">Belum ada pendaftar yang masuk ke sistem.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
