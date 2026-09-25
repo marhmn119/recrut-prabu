@@ -3,21 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran Berhasil!</title>
+    <title>Pendaftaran Berhasil - Prabu Jakarta 2026</title>
     <style>
-        body { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
-        .success-box { background-color: white; padding: 40px; border-radius: 12px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.3); max-width: 450px; }
-        h2 { color: #1e3c72; margin-bottom: 15px; }
-        p { color: #555; margin-bottom: 30px; line-height: 1.6; }
-        .wa-btn { background-color: #25D366; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; }
-        .wa-btn:hover { background-color: #1ebe57; }
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .success-card {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        .success-card h2 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        .success-card p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        .wa-btn {
+            display: inline-block;
+            background-color: #25D366; /* Warna khas WhatsApp */
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-bottom: 15px;
+        }
+        .wa-btn:hover {
+            background-color: #1ebe57;
+        }
+        .back-link {
+            display: block;
+            color: #0056b3;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="success-box">
-        <h2>Pendaftaran Berhasil!</h2>
-        <p>Terima kasih <strong>{{ nama }}</strong>. Berkas pendaftaranmu sudah masuk.<br><br>Kamu <strong>wajib</strong> bergabung ke grup WhatsApp calon anggota melalui tombol di bawah ini.</p>
-        <a href="https://chat.whatsapp.com/CC5JmHw5X2oGj0YMCf4snq" class="wa-btn" target="_blank">Masuk Grup WhatsApp</a>
+
+    <div class="success-card">
+        <h2>Pendaftaran Berhasil! 🎉</h2>
+        <p>Terima kasih <strong>{{ nama }}</strong>, berkas dan data pendaftaran kamu untuk rekrutmen Prabu Jakarta 2026 sudah kami terima.</p>
+        
+        <p>Langkah selanjutnya, kamu <strong>wajib</strong> bergabung ke Grup WhatsApp calon anggota untuk informasi lebih lanjut:</p>
+        
+        <!-- GANTI LINK DI BAWAH INI DENGAN LINK GRUP WHATSAPP KAMU -->
+        <a href="https://chat.whatsapp.com/GANTI_DENGAN_KODE_INVITE_GRUP_KAMU" class="wa-btn" target="_blank">
+            💬 Gabung Grup WhatsApp
+        </a>
+        
+        <a href="/" class="back-link">Kembali ke halaman utama</a>
     </div>
+
 </body>
 </html>
