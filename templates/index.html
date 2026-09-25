@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekrutmen Anggota Prabu Jakarta 2026</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); display: flex; justify-content: center; padding: 40px 20px; margin: 0; min-height: 100vh; }
+        .form-container { background-color: #ffffff; border-radius: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); width: 100%; max-width: 600px; overflow: hidden; }
+        .header-image { width: 100%; height: auto; display: block; border-bottom: 4px solid #f39c12; }
+        .form-content { padding: 30px 40px; }
+        h2 { text-align: center; color: #1e3c72; margin-bottom: 5px; font-weight: 800; text-transform: uppercase; }
+        p.subtitle { text-align: center; color: #666; margin-bottom: 25px; font-size: 14px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ccd1d9; border-radius: 6px; font-size: 14px; background-color: #f8f9fa; }
+        .file-hint { font-size: 12px; color: #888; margin-top: 6px; display: block; font-style: italic; }
+        button { width: 100%; padding: 14px; background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:hover { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="{{ url_for('static', filename='foto prabu.jpeg') }}" alt="Prabu Jakarta" class="header-image">
+        <div class="form-content">
+            <h2>Pendaftaran Anggota</h2>
+            <p class="subtitle">Prabu Jakarta Tahun 2026</p>
+            <form action="/submit" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" name="namaLengkap" required>
+                </div>
+                <div class="form-group">
+                    <label>Kelas</label>
+                    <select name="kelas" required>
+                        <option value="" disabled selected>-- Pilih Kelas --</option>
+                        <option value="X-1">X-1</option>
+                        <option value="X-2">X-2</option>
+                        <option value="X-3">X-3</option>
+                        <option value="X-4">X-4</option>
+                        <option value="X-5">X-5</option>
+                        <option value="X-6">X-6</option>
+                        <option value="X-7">X-7</option>
+                        <option value="X-8">X-8</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Alasan Bergabung</label>
+                    <textarea name="alasan" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload CV</label>
+                    <input type="file" name="cv" accept=".pdf" required>
+                    <span class="file-hint">Format PDF.</span>
+                </div>
+                <div class="form-group">
+                    <label>Upload Transkrip Nilai</label>
+                    <input type="file" name="transkrip" accept=".pdf, .jpg, .png" required>
+                </div>
+                <div class="form-group">
+                    <label>Upload Analisis SWOT</label>
+                    <input type="file" name="swot" accept=".pdf, .doc, .docx" required>
+                </div>
+                <div class="form-group">
+                    <label>Upload Ijazah SMP</label>
+                    <input type="file" name="ijazah" accept=".pdf, .jpg, .png" required>
+                </div>
+                <button type="submit">Kirim Berkas Pendaftaran</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
