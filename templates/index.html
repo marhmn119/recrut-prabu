@@ -47,31 +47,30 @@
             font-size: 14px;
         }
         
-        /* DESAIN KOTAK TIMER DENGAN EFEK CAHAYA NEON (GLOW) */
+        /* DESAIN KOTAK TIMER (SUDAH DIPERKECIL) */
         .countdown-box {
             background: linear-gradient(135deg, #112240 0%, #1e3c72 100%);
-            color: #f39c12; /* Warna teks emas/oranye */
+            color: #f39c12; 
             border: 1px solid #f39c12;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 8px 12px; /* Padding dikecilkan agar kotak lebih tipis */
+            border-radius: 6px;
             text-align: center;
-            font-weight: 800;
-            margin-bottom: 25px;
-            font-size: 16px;
-            letter-spacing: 1px;
-            /* Efek Animasi Bernapas */
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 12.5px; /* Ukuran huruf dikecilkan */
+            letter-spacing: 0.5px;
             animation: neon-glow 1.5s infinite alternate;
         }
 
         /* Animasi Cahaya Oranye/Emas */
         @keyframes neon-glow {
             from {
-                box-shadow: 0 0 5px rgba(243, 156, 18, 0.3), 0 0 10px rgba(243, 156, 18, 0.2);
-                text-shadow: 0 0 5px rgba(243, 156, 18, 0.3);
+                box-shadow: 0 0 3px rgba(243, 156, 18, 0.3), 0 0 5px rgba(243, 156, 18, 0.2);
+                text-shadow: 0 0 3px rgba(243, 156, 18, 0.3);
             }
             to {
-                box-shadow: 0 0 15px rgba(243, 156, 18, 0.8), 0 0 25px rgba(243, 156, 18, 0.6), 0 0 35px rgba(243, 156, 18, 0.4);
-                text-shadow: 0 0 10px rgba(243, 156, 18, 0.8), 0 0 20px rgba(243, 156, 18, 0.6);
+                box-shadow: 0 0 8px rgba(243, 156, 18, 0.8), 0 0 15px rgba(243, 156, 18, 0.6);
+                text-shadow: 0 0 5px rgba(243, 156, 18, 0.8);
             }
         }
 
@@ -86,12 +85,12 @@
         /* Animasi Cahaya Merah */
         @keyframes neon-glow-merah {
             from {
-                box-shadow: 0 0 5px rgba(255, 76, 76, 0.3);
-                text-shadow: 0 0 5px rgba(255, 76, 76, 0.3);
+                box-shadow: 0 0 3px rgba(255, 76, 76, 0.3);
+                text-shadow: 0 0 3px rgba(255, 76, 76, 0.3);
             }
             to {
-                box-shadow: 0 0 15px rgba(255, 76, 76, 0.8), 0 0 25px rgba(255, 76, 76, 0.6);
-                text-shadow: 0 0 10px rgba(255, 76, 76, 0.8);
+                box-shadow: 0 0 8px rgba(255, 76, 76, 0.8), 0 0 15px rgba(255, 76, 76, 0.6);
+                text-shadow: 0 0 5px rgba(255, 76, 76, 0.8);
             }
         }
         /* AKHIR DESAIN TIMER */
@@ -154,7 +153,7 @@
             
             {% if status == 'BUKA' %}
                 
-                <!-- KOTAK COUNTDOWN TIMER DENGAN EFEK GLOW -->
+                <!-- KOTAK COUNTDOWN TIMER -->
                 <div class="countdown-box" id="live-timer">⏳ Menghitung sisa waktu...</div>
                 
                 <form action="/submit" method="POST" enctype="multipart/form-data">
@@ -228,7 +227,7 @@
     {% if status == 'BUKA' %}
     <script>
         // Target waktu tutup (30 September 2026 jam 23:59:59 WIB)
-        var countDownDate = new Date("Sep 27, 2026 23:59:59 GMT+0700").getTime();
+        var countDownDate = new Date("Sep 30, 2026 23:59:59 GMT+0700").getTime();
 
         var x = setInterval(function() {
             var now = new Date().getTime();
@@ -239,15 +238,12 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Teks yang muncul di dalam kotak
             document.getElementById("live-timer").innerHTML = "⏳ SISA WAKTU: " + days + " HARI " + hours + " JAM " + minutes + " MNT " + seconds + " DTK";
 
-            // Kalau waktu habis, tulisan dan efek cahaya berubah jadi merah
             if (distance < 0) {
                 clearInterval(x);
                 var timerBox = document.getElementById("live-timer");
-                timerBox.innerHTML = "⛔ WAKTU PENDAFTARAN HABIS";
-                // Menambahkan efek cahaya merah menyala
+                timerBox.innerHTML = "⛔ WAKTU HABIS";
                 timerBox.classList.add("habis");
             }
         }, 1000);
