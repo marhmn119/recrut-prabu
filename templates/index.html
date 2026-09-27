@@ -46,18 +46,56 @@
             margin-bottom: 20px;
             font-size: 14px;
         }
-        /* DESAIN KOTAK TIMER */
+        
+        /* DESAIN KOTAK TIMER DENGAN EFEK CAHAYA NEON (GLOW) */
         .countdown-box {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-            padding: 12px;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #112240 0%, #1e3c72 100%);
+            color: #f39c12; /* Warna teks emas/oranye */
+            border: 1px solid #f39c12;
+            padding: 15px;
+            border-radius: 8px;
             text-align: center;
-            font-weight: bold;
+            font-weight: 800;
             margin-bottom: 25px;
-            font-size: 14px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            /* Efek Animasi Bernapas */
+            animation: neon-glow 1.5s infinite alternate;
         }
+
+        /* Animasi Cahaya Oranye/Emas */
+        @keyframes neon-glow {
+            from {
+                box-shadow: 0 0 5px rgba(243, 156, 18, 0.3), 0 0 10px rgba(243, 156, 18, 0.2);
+                text-shadow: 0 0 5px rgba(243, 156, 18, 0.3);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(243, 156, 18, 0.8), 0 0 25px rgba(243, 156, 18, 0.6), 0 0 35px rgba(243, 156, 18, 0.4);
+                text-shadow: 0 0 10px rgba(243, 156, 18, 0.8), 0 0 20px rgba(243, 156, 18, 0.6);
+            }
+        }
+
+        /* Desain Timer kalau waktu habis (Cahaya Merah) */
+        .countdown-box.habis {
+            background: linear-gradient(135deg, #4a0000 0%, #800000 100%);
+            color: #ff4c4c;
+            border: 1px solid #ff4c4c;
+            animation: neon-glow-merah 1s infinite alternate;
+        }
+
+        /* Animasi Cahaya Merah */
+        @keyframes neon-glow-merah {
+            from {
+                box-shadow: 0 0 5px rgba(255, 76, 76, 0.3);
+                text-shadow: 0 0 5px rgba(255, 76, 76, 0.3);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(255, 76, 76, 0.8), 0 0 25px rgba(255, 76, 76, 0.6);
+                text-shadow: 0 0 10px rgba(255, 76, 76, 0.8);
+            }
+        }
+        /* AKHIR DESAIN TIMER */
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -116,7 +154,7 @@
             
             {% if status == 'BUKA' %}
                 
-                <!-- KOTAK COUNTDOWN TIMER MUNCUL DI SINI -->
+                <!-- KOTAK COUNTDOWN TIMER DENGAN EFEK GLOW -->
                 <div class="countdown-box" id="live-timer">⏳ Menghitung sisa waktu...</div>
                 
                 <form action="/submit" method="POST" enctype="multipart/form-data">
@@ -189,9 +227,8 @@
     <!-- SCRIPT JAVASCRIPT UNTUK TIMER -->
     {% if status == 'BUKA' %}
     <script>
-        // Target waktu tutup (Bulan Tanggal, Tahun Jam:Menit:Detik GMT+0700)
-        // Diatur ke 30 September 2026 jam 23:59:59 WIB
-        var countDownDate = new Date("Sep 30, 2026 23:59:59 GMT+0700").getTime();
+        // Target waktu tutup (30 September 2026 jam 23:59:59 WIB)
+        var countDownDate = new Date("Sep 27, 2026 23:59:59 GMT+0700").getTime();
 
         var x = setInterval(function() {
             var now = new Date().getTime();
@@ -202,17 +239,16 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Menampilkan hasil di elemen dengan id="live-timer"
-            document.getElementById("live-timer").innerHTML = "⏳ Sisa Waktu: " + days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik";
+            // Teks yang muncul di dalam kotak
+            document.getElementById("live-timer").innerHTML = "⏳ SISA WAKTU: " + days + " HARI " + hours + " JAM " + minutes + " MNT " + seconds + " DTK";
 
-            // Kalau waktu habis, tulisan berubah
+            // Kalau waktu habis, tulisan dan efek cahaya berubah jadi merah
             if (distance < 0) {
                 clearInterval(x);
                 var timerBox = document.getElementById("live-timer");
                 timerBox.innerHTML = "⛔ WAKTU PENDAFTARAN HABIS";
-                timerBox.style.backgroundColor = "#f8d7da";
-                timerBox.style.color = "#721c24";
-                timerBox.style.borderColor = "#f5c6cb";
+                // Menambahkan efek cahaya merah menyala
+                timerBox.classList.add("habis");
             }
         }, 1000);
     </script>
