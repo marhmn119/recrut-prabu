@@ -223,11 +223,11 @@
         </div>
     </div>
 
-    <!-- SCRIPT JAVASCRIPT UNTUK TIMER -->
+  <!-- SCRIPT JAVASCRIPT UNTUK TIMER DAN AUTO-CLOSE FORM -->
     {% if status == 'BUKA' %}
     <script>
         // Target waktu tutup (30 September 2026 jam 23:59:59 WIB)
-        var countDownDate = new Date("Sep 27, 2026 22:00:00 GMT+0700").getTime();
+        var countDownDate = new Date("Sep 30, 2026 23:59:59 GMT+0700").getTime();
 
         var x = setInterval(function() {
             var now = new Date().getTime();
@@ -240,15 +240,29 @@
 
             document.getElementById("live-timer").innerHTML = "⏳ SISA WAKTU: " + days + " HARI " + hours + " JAM " + minutes + " MNT " + seconds + " DTK";
 
+            // Kalau waktu habis
             if (distance < 0) {
                 clearInterval(x);
+                
+                // 1. Ubah tampilan kotak timer jadi merah
                 var timerBox = document.getElementById("live-timer");
-                timerBox.innerHTML = "⛔ WAKTU HABIS";
+                timerBox.innerHTML = "⛔ WAKTU PENDAFTARAN RESMI DITUTUP";
                 timerBox.classList.add("habis");
+
+                // 2. Sembunyikan form pendaftaran secara otomatis dari layar!
+                var formElement = document.querySelector("form");
+                if (formElement) {
+                    formElement.style.display = "none";
+                }
+
+                // 3. Munculkan pesan pengumuman di bawah timer
+                var formContent = document.querySelector(".form-content");
+                var noticeDiv = document.createElement("div");
+                noticeDiv.style.textAlign = "center";
+                noticeDiv.style.padding = "20px 0";
+                noticeDiv.innerHTML = '<h3 style="color: #e74c3c; margin-bottom: 10px; font-size: 20px;">Pendaftaran Telah Ditutup!</h3><p style="color: #555; font-size: 14px; line-height: 1.6;">Mohon maaf, waktu pendaftaran anggota Prabu Jakarta 2026 sudah berakhir.</p>';
+                formContent.appendChild(noticeDiv);
             }
         }, 1000);
     </script>
     {% endif %}
-
-</body>
-</html>
